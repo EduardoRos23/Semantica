@@ -1,0 +1,7 @@
+Analizador Lexico
+Autor: Rafael Mejía
+123 = Numero
++ = OpTermino
+radio = Identificador
+; = FinSentencia
+using = Identificador

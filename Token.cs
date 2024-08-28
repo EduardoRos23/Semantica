@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Semantica
+namespace Sintaxis_1
 {
     public class Token
     {
         public enum Tipos
         {
-            Identificador,Numero,Caracter,Asignacion,FinSentencia,FinArchivo,OpLogico,
-            OperadorRelacional,OperadorTermino,IncrementoTermino,
-            OperadorFactor,IncrementoFactor,OpTernario,Cadena,Inicio,Fin,
-            TipoDatos, Reservada
-        }
+            Identificador, Numero, FinSentencia, OpTermino, OpFactor,
+            OpLogico, OpRelacional, OpTernario, Asignacion, IncTermino,
+            IncFactor, Cadena, Inicio, Fin, Caracter, TipoDato, Ciclo, 
+            Condicion
+        };
         private string contenido;
-        private Tipos  clasificacion;
+        private Tipos clasificacion;
         public Token()
         {
             contenido = "";
-            clasificacion = Tipos.Identificador;
         }
         public void setContenido(string contenido)
         {
