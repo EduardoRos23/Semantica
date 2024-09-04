@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sintaxis_1;
 //El Hazel no sabe ni que esta haciendo.
+//123Am
 namespace Semantica
 {
     public class Lenguaje : Sintaxis
