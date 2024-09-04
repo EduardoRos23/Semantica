@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Sintaxis_1;
-
+//El Hazel no sabe ni que esta haciendo.
 namespace Semantica
 {
     public class Lenguaje : Sintaxis
@@ -102,7 +102,7 @@ namespace Semantica
             }
             else if (getContenido() == "while")
             {
-                while ():
+                while();
             }
             else if (getContenido() == "do")
             {
