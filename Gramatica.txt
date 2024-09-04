@@ -15,15 +15,11 @@ If -> if (Condicion) bloqueInstrucciones | instruccion
 Condicion -> Expresion operadorRelacional Expresion
 
 While -> while(Condicion) bloqueInstrucciones | instruccion
-Do -> do 
-        bloqueInstrucciones | intruccion 
-      while(Condicion);
-For -> for(Asignacion Condicion; Incremento) 
-       BloqueInstrucciones | Intruccion 
+Do -> do bloqueInstrucciones | intruccion while(Condicion);
+For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion 
 Incremento -> Identificador ++ | --
 
-Console -> Console.(WriteLine|Write) (cadena); |
-           Console.(Read | ReadLine) ();
+Console -> Console.(WriteLine|Write) (cadena); | Console.(Read | ReadLine) ();
 
 Main      -> static void Main(string[] args) BloqueInstrucciones 
 

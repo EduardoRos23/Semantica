@@ -1,4 +1,4 @@
-123+radio;
+
 
 
 using System;
@@ -11,6 +11,7 @@ static void Main(string[] args)
     char e;
     float pi;
     int rex;
+    int a;
 
     Console.Write("Proyecto 6");
     Console.WriteLine(" - ITQ");
