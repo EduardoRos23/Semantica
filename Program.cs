@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Semantica;
 
 namespace Sintaxis_1
 {
@@ -11,19 +12,18 @@ namespace Sintaxis_1
         {
             try
             {
-                using (Sintaxis L = new Sintaxis("prueba.cpp"))
+                using (Lenguaje L = new Lenguaje("prueba.cpp"))
                 {
 
-                    L.match (Token.Tipos.Numero);
-                    L.match(Token.Tipos.OpTermino);
-                    L.match (Token.Tipos.Identificador);
-                    L.match (";");
+                   
                    /*
                     while(!L.finArchivo())
                     {
                         L.nextToken();
                     }
                     */
+                    
+                    L.Programa();
                 }
             }
             catch (Exception e)
