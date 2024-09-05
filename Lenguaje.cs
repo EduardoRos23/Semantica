@@ -154,6 +154,16 @@ namespace Semantica
             match(Tipos.Identificador);
             match("=");
             Expresion();
+            switch(getContenido())
+            {
+                case"++": break;
+                case"--": break;
+                case"+=":Expresion(); break;
+                case"-=":Expresion(); break;
+                case"*=":Expresion(); break;
+                case"/=":Expresion(); break;
+                case"%=":Expresion(); break;
+            }
             match(";");
             imprimeStack();
             log.WriteLine(Variable+"="+S.Pop());
@@ -391,6 +401,18 @@ namespace Semantica
                 match(")");
             }
         }
+
+        //asignacion -- Id = Expresion ;
+        /*
+        id ++;
+        id --;
+        id += Expresion ;
+        id -= Expresion ;
+        id *= Expresion ;
+        id /= Expresion ;
+        id %= Expresion ;
+        */
+        
     }
 
 
