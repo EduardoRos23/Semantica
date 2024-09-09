@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\T480\\.nuget\\packages\\": {}
+    "C:\\Users\\Americo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\T480\\OneDrive\\Documentos\\ITQ\\Automatas II\\Semantica\\Semantica.csproj",
+      "projectUniqueName": "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\Semantica.csproj",
       "projectName": "Semantica",
-      "projectPath": "C:\\Users\\T480\\OneDrive\\Documentos\\ITQ\\Automatas II\\Semantica\\Semantica.csproj",
-      "packagesPath": "C:\\Users\\T480\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\T480\\OneDrive\\Documentos\\ITQ\\Automatas II\\Semantica\\obj\\",
+      "projectPath": "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\Semantica.csproj",
+      "packagesPath": "C:\\Users\\Americo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\T480\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Americo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -59,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

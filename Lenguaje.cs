@@ -4,7 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Sintaxis_1;
-
+/*Requerimientos:
+1) Indicar numero de linea donde hay error
+2) Cambiar clase token por atributo público
+3) Tamaño de char, int, float
+4) Asignación Id = Expresión
+*/
 namespace Semantica
 {
     public class Lenguaje : Sintaxis
@@ -27,6 +32,10 @@ namespace Semantica
             if (getContenido() == "using")
             {
                 Librerias();
+            }
+            if (getClasificacion() == Tipos.TipoDato)
+            {
+                Variables();
             }
             Main();
             imprimeVariable();
@@ -413,6 +422,7 @@ namespace Semantica
         id %= Expresion ;
         */
         
+
     }
 
 
@@ -422,7 +432,7 @@ namespace Semantica
 
 /*
 Librerias -> using ListaLibrerias; Librerias?
-
+Variables -> tipo_dato Lista_identificadores; Variables?
 
 ListaIdentificadores -> identificador (,ListaIdentificadores)?
 BloqueInstrucciones -> { listaIntrucciones? }
