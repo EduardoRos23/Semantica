@@ -11,8 +11,7 @@ namespace Semantica
     {
        private  List<Variable> listaVariables;
         private  Stack<float> S; 
-       private  List<Variable> listaVariables;
-        private  Stack<float> S; 
+        
         public Lenguaje()
         {
          listaVariables  = new List<Variable>();
@@ -74,25 +73,14 @@ namespace Semantica
         }
 
         //Variables -> tipo_dato Lista_identificadores; Variables?
-        Variable.TipoDato getTipo(string TipoDato)
-        {
-            Variable.TipoDato tipo = Variable.TipoDato.Char;
-            switch (TipoDato)
-            {
-                case "int": tipo = Variable.TipoDato.Int; break;
-                case "Float": tipo = Variable.TipoDato.Float;break;
-                
-            }
-            return tipo;
-        }
+        
 
         //Variables -> tipo_dato Lista_identificadores; Variables?
         private void Variables()
         {
             
             Variable.TipoDato tipo = getTipo(getContenido());
-            
-            Variable.TipoDato tipo = getTipo(getContenido());
+
             match(Tipos.TipoDato);
             listaIdentificadores(tipo);
             listaIdentificadores(tipo);
@@ -184,7 +172,6 @@ namespace Semantica
         //Asignacion -> Identificador = Expresion;
         private void Asignacion()
         {
-            string Variable = getContenido();
             string Variable = getContenido();
             match(Tipos.Identificador);
             match("=");
