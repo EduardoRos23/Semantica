@@ -4,26 +4,27 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Sintaxis_1;
-/*Requerimientos:
-1) Indicar numero de linea donde hay error
-2) Cambiar clase token por atributo público
-3) Tamaño de char, int, float
-4) Asignación Id = Expresión
-*/
+
 namespace Semantica
 {
     public class Lenguaje : Sintaxis
     {
        private  List<Variable> listaVariables;
         private  Stack<float> S; 
+       private  List<Variable> listaVariables;
+        private  Stack<float> S; 
         public Lenguaje()
         {
+         listaVariables  = new List<Variable>();
+         S = new Stack<float>();
          listaVariables  = new List<Variable>();
          S = new Stack<float>();
         }
 
         public Lenguaje(string nombre) : base(nombre)
         {
+            listaVariables  = new List<Variable>();
+            S = new Stack<float>();
             listaVariables  = new List<Variable>();
             S = new Stack<float>();
         }
@@ -33,11 +34,8 @@ namespace Semantica
             {
                 Librerias();
             }
-            if (getClasificacion() == Tipos.TipoDato)
-            {
-                Variables();
-            }
             Main();
+            imprimeVariable();
             imprimeVariable();
         }
 
@@ -76,11 +74,27 @@ namespace Semantica
         }
 
         //Variables -> tipo_dato Lista_identificadores; Variables?
+        Variable.TipoDato getTipo(string TipoDato)
+        {
+            Variable.TipoDato tipo = Variable.TipoDato.Char;
+            switch (TipoDato)
+            {
+                case "int": tipo = Variable.TipoDato.Int; break;
+                case "Float": tipo = Variable.TipoDato.Float;break;
+                
+            }
+            return tipo;
+        }
+
+        //Variables -> tipo_dato Lista_identificadores; Variables?
         private void Variables()
         {
             
             Variable.TipoDato tipo = getTipo(getContenido());
+            
+            Variable.TipoDato tipo = getTipo(getContenido());
             match(Tipos.TipoDato);
+            listaIdentificadores(tipo);
             listaIdentificadores(tipo);
             match(";");
             
@@ -97,13 +111,16 @@ namespace Semantica
         private void listaIdentificadores(Variable.TipoDato t)
         {
             listaVariables.Add(new Variable(getContenido(),t));
+            listaVariables.Add(new Variable(getContenido(),t));
             match(Tipos.Identificador);
             if (getContenido() == ",")
             {
                 match(",");
                 listaIdentificadores(t);
+                listaIdentificadores(t);
             }
         }
+        //BloqueInstrucciones -> { listaIntrucciones? }
         //BloqueInstrucciones -> { listaIntrucciones? }
         private void bloqueInstrucciones()
         {
@@ -115,6 +132,7 @@ namespace Semantica
             match("}");
         }
         //ListaInstrucciones -> Instruccion ListaInstrucciones?
+        //ListaInstrucciones -> Instruccion ListaInstrucciones?
         private void listaInstrucciones()
         {
             Instruccion();
@@ -123,6 +141,7 @@ namespace Semantica
                 listaInstrucciones();
             }
         }
+        //Instruccion -> Console | If | While | do | For | Variables | Asignacion
         //Instruccion -> Console | If | While | do | For | Variables | Asignacion
         private void Instruccion()
         {
@@ -136,6 +155,7 @@ namespace Semantica
             }
             else if (getContenido() == "while")
             {
+                While();
                 While();
             }
             else if (getContenido() == "do")
@@ -151,14 +171,20 @@ namespace Semantica
             {
                 Variables();
             }
+            else if (getClasificacion() == Tipos.TipoDato)
+            {
+                Variables();
+            }
             else
             {
                 Asignacion();
             }
         }
         //Asignacion -> Identificador = Expresion;
+        //Asignacion -> Identificador = Expresion;
         private void Asignacion()
         {
+            string Variable = getContenido();
             string Variable = getContenido();
             match(Tipos.Identificador);
             match("=");
@@ -176,7 +202,11 @@ namespace Semantica
             match(";");
             imprimeStack();
             log.WriteLine(Variable+"="+S.Pop());
+            imprimeStack();
+            log.WriteLine(Variable+"="+S.Pop());
         }
+        //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
+
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
 
         private void If()
@@ -209,12 +239,14 @@ namespace Semantica
             }
         }
         //Condicion -> Expresion operadorRelacional Expresion
+        //Condicion -> Expresion operadorRelacional Expresion
         private void Condicion()
         {
             Expresion();
             match(Tipos.OpRelacional);
             Expresion();
         }
+        //While -> while(Condicion) bloqueInstrucciones | instruccion
         //While -> while(Condicion) bloqueInstrucciones | instruccion
         public void While()
         {
@@ -231,6 +263,7 @@ namespace Semantica
                 Instruccion();
             }
         }
+        //Do -> do bloqueInstrucciones | intruccion while(Condicion);
         //Do -> do bloqueInstrucciones | intruccion while(Condicion);
         public void Do()
         {
@@ -249,6 +282,7 @@ namespace Semantica
             match(")");
             match(";");
         }
+        //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion 
         //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion 
         public void For()
         {
@@ -269,9 +303,11 @@ namespace Semantica
             }
         }
         //Incremento -> Identificador ++ | --
+        //Incremento -> Identificador ++ | --
         public void Incremento()
         {
             match(Tipos.Identificador);
+            if (getContenido() == "++")
             if (getContenido() == "++")
             {
                 match("++");
@@ -282,23 +318,29 @@ namespace Semantica
             }
         }
         //Console -> Console.(WriteLine|Write) (cadena); | Console.(Read | ReadLine) ();
+        //Console -> Console.(WriteLine|Write) (cadena); | Console.(Read | ReadLine) ();
         private void Console()
         {
             match("Console");
             match(".");
             if (getContenido() == "WriteLine" || getContenido() == "Write")
+            if (getContenido() == "WriteLine" || getContenido() == "Write")
             {
                 match(getContenido());
                 match("(");
                 if (getClasificacion() == Tipos.Cadena)
+                if (getClasificacion() == Tipos.Cadena)
                 {
+                    match(Tipos.Cadena);
                     match(Tipos.Cadena);
                 }
                 match(")");
 
+
             }
             else
             {
+                if (getContenido() == "ReadLine")
                 if (getContenido() == "ReadLine")
                 {
                     match("ReadLine");
@@ -432,7 +474,7 @@ namespace Semantica
 
 /*
 Librerias -> using ListaLibrerias; Librerias?
-Variables -> tipo_dato Lista_identificadores; Variables?
+
 
 ListaIdentificadores -> identificador (,ListaIdentificadores)?
 BloqueInstrucciones -> { listaIntrucciones? }

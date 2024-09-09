@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace Sintaxis_1
 {
+    
     public class Sintaxis : Lexico
     {
+        int lineaError=0;
         public Sintaxis()
         {
             nextToken();
@@ -17,12 +19,15 @@ namespace Sintaxis_1
         }
         public void match(string espera)
         {
+            lineaError++;
             if (getContenido() == espera)
             {
+                
                 nextToken();
             }
             else
             {
+                Console.Write("Linea "+lineaError+" ");
                 throw new Error("Sintaxis: se espera un "+espera,log);
             }
         }
