@@ -10,7 +10,6 @@ namespace Sintaxis_1
     {
         private StreamReader archivo;
         public StreamWriter log;
-        protected StreamWriter asm;
         protected int linea;
         const int F = -1;
         const int E = -2;
@@ -55,12 +54,10 @@ namespace Sintaxis_1
         {
             log = new StreamWriter("prueba.log");
             log.AutoFlush = true;
-            asm = new StreamWriter("prueba.asm");
-            asm.AutoFlush = true;
+            
             log.WriteLine("Analizador Lexico");
-            log.WriteLine("Autor: Rafael Mejía");
-            asm.WriteLine("; Autor: Rafael Mejía");
-
+            log.WriteLine("Autor: Eduardo Rosales");
+            
             if (!File.Exists("prueba.cpp"))
             {
                 throw new Error("El archivo prueba.cpp no existe", log);
@@ -71,12 +68,10 @@ namespace Sintaxis_1
         {
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
             log.AutoFlush = true;
-            asm = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".asm");
-            asm.AutoFlush = true;
+            
             log.WriteLine("Analizador Lexico");
-            log.WriteLine("Autor: Rafael Mejía");
-            asm.WriteLine("; Autor: Rafael Mejía");
-
+            log.WriteLine("Autor: Eduardo Rosales");
+            
             if (Path.GetExtension(nombre) != ".cpp")
             {
                 throw new Error("El archivo " + nombre + " no tiene extension CPP", log);
@@ -91,7 +86,7 @@ namespace Sintaxis_1
         {
             archivo.Close();
             log.Close();
-            asm.Close();
+            
         }
         int Columna(char c)
         {
