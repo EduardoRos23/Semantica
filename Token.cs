@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace Sintaxis_1
@@ -20,7 +21,18 @@ namespace Sintaxis_1
         {
             contenido = "";
         }
-        public void setContenido(string contenido)
+        
+        public string Contenido{
+         get => contenido;
+         set => contenido = value;
+        
+        }
+
+        public Tipos Clasificacion{
+            get=> clasificacion;
+            set => clasificacion=value;
+        }
+      /*  public void setContenido(string contenido)
         {
             this.contenido = contenido;
         }
@@ -35,7 +47,7 @@ namespace Sintaxis_1
         public Tipos getClasificacion()
         {
             return this.clasificacion;
-        }
+        }*/
         
     }
 }

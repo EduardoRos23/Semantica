@@ -35,4 +35,30 @@ args = Identificador
 char = TipoDato
 e = Identificador
 ; = FinSentencia
-Error: Sintaxis: se espera un Identificador
+float = TipoDato
+pi = Identificador
+; = FinSentencia
+int = TipoDato
+rex = Identificador
+; = FinSentencia
+int = TipoDato
+a = Identificador
+; = FinSentencia
+Console = Identificador
+. = Caracter
+Write = Identificador
+( = Caracter
+"Proyecto 6" = Cadena
+) = Caracter
+; = FinSentencia
+Console = Identificador
+. = Caracter
+WriteLine = Identificador
+( = Caracter
+" - ITQ" = Cadena
+) = Caracter
+; = FinSentencia
+e = Identificador
+= = Asignacion
+Stack:
+
