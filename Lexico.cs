@@ -50,6 +50,21 @@ namespace Sintaxis_1
             {F,F, 32, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}
 
         };
+
+        public Lexico()
+        {
+            log = new StreamWriter("Pordefecto.log");
+            log.AutoFlush = true;
+            
+            log.WriteLine("Analizador Lexico(por defecto)");
+            log.WriteLine("Autor: ");
+
+            if (!File.Exists("PorDefecto.cpp"))
+            {
+                throw new Error("El archivo prueba.cpp no existe", log);
+            }
+            archivo = new StreamReader("PorDefecto.cpp");
+        }
         public Lexico() // Constructor
         {
             log = new StreamWriter("prueba.log");

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Sintaxis_1;
 
@@ -14,10 +15,14 @@ namespace Semantica
         
         public Lenguaje()
         {
+        
          listaVariables  = new List<Variable>();
          S = new Stack<float>();
          listaVariables  = new List<Variable>();
          S = new Stack<float>();
+
+         console.WriteLine("Constructor Inicializado");
+
         }
 
         public Lenguaje(string nombre) : base(nombre)
@@ -191,7 +196,33 @@ namespace Semantica
             log.WriteLine(Variable+"="+S.Pop());
             imprimeStack();
             log.WriteLine(Variable+"="+S.Pop());
+
+            String identificador = getContenido();
+            match(Tipos.Asignacion);
+
+            if(getClasificacion() == Tipos.Numero)
+            {
+                int valor = int.Parse(getContenido());
+
+                string tipoDato = listaIdentificadores(Variable.tipoDato);
+
+                if(tipoDato ==  "char")
+                {
+                    if(valor <0 || valor >255)
+                    {
+                        throw new Exception("El valor del char debe estar entre 0 y 255.");
+                    }
+                }
+                else if(tipoDato ==  "int")
+                {
+                    if(valor <-32768 || valor >32767)
+                    {
+                        throw new Exception("El valor del int debe estar entre 0 y el máximo representable por un int.");
+                    }
+                }
+            }
         }
+
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
 
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
