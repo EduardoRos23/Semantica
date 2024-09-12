@@ -65,7 +65,7 @@ namespace Sintaxis_1
             }
             archivo = new StreamReader("PorDefecto.cpp");
         }
-        public Lexico() // Constructor
+       /* public Lexico() // Constructor
         {
             log = new StreamWriter("prueba.log");
             log.AutoFlush = true;
@@ -78,7 +78,7 @@ namespace Sintaxis_1
                 throw new Error("El archivo prueba.cpp no existe", log);
             }
             archivo = new StreamReader("Prueba.cpp");
-        }
+        }*/
         public Lexico(string nombre) // Constructor
         {
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
