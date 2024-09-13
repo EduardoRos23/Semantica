@@ -50,4 +50,34 @@ n = Identificador
 ; = FinSentencia
 i = Identificador
 = = Asignacion
-Error: Sintaxis: se espera un (() en la linea 17
+5 = Numero
+; = FinSentencia
+a = Identificador
+= = Asignacion
+50 = Numero
+; = FinSentencia
+a = Identificador
+++ = IncTermino
+; = FinSentencia
+a = Identificador
+-- = IncTermino
+; = FinSentencia
+a = Identificador
+= = Asignacion
+250 = Numero
+; = FinSentencia
+a = Identificador
+%= = IncFactor
+2 = Numero
+; = FinSentencia
+} = Fin
+ = Fin
+Stack:
+5 50 250 2 
+a()Int)=0
+i()Int)=0
+j()Int)=0
+k()Int)=0
+l()Int)=0
+m()Int)=0
+n()Int)=0

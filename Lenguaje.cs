@@ -155,16 +155,16 @@ namespace Semantica
             match(Tipos.Identificador);
             switch(Contenido){
                 
-                case "++":match(";"); break;
-                case "--":match(";"); break;
-                case "=": Expresion();break;
-                case "+=": Expresion(); break;
-                case "-=": Expresion(); break;
-                case "*=": Expresion(); break;
-                case "/=": Expresion(); break;
-                case "%=": Expresion(); break;
+                case "++":match("++"); break;
+                case "--":match("--"); break;
+                case "=": match("=");Expresion();break;
+                case "+=": match("+=");Expresion(); break;
+                case "-=": match("-=");Expresion(); break;
+                case "*=": match("*=");Expresion(); break;
+                case "/=": match("/=");Expresion(); break;
+                case "%=": match("%=");Expresion(); break;
             }
-            //match(";");
+            match(";");
             //log.WriteLine(Variable+"="+S.Pop());
         }
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
