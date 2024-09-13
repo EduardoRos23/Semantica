@@ -33,51 +33,40 @@ args = Identificador
 ) = Caracter
 { = Inicio
 int = TipoDato
-a = Identificador
+x = Identificador
+, = Caracter
+y = Identificador
+, = Caracter
+z = Identificador
 ; = FinSentencia
-int = TipoDato
-i = Identificador
-, = Caracter
-j = Identificador
-, = Caracter
-k = Identificador
-, = Caracter
-l = Identificador
-, = Caracter
-m = Identificador
-, = Caracter
-n = Identificador
-; = FinSentencia
-i = Identificador
+x = Identificador
 = = Asignacion
-5 = Numero
+1 = Numero
 ; = FinSentencia
-a = Identificador
+y = Identificador
 = = Asignacion
-50 = Numero
+33 = Numero
 ; = FinSentencia
-a = Identificador
+x = Identificador
 ++ = IncTermino
 ; = FinSentencia
-a = Identificador
--- = IncTermino
-; = FinSentencia
-a = Identificador
+z = Identificador
 = = Asignacion
-250 = Numero
+x = Identificador
++ = OpTermino
+y = Identificador
 ; = FinSentencia
-a = Identificador
-%= = IncFactor
-2 = Numero
+Console = Identificador
+. = Caracter
+Write = Identificador
+( = Caracter
+"Hola" = Cadena
+) = Caracter
 ; = FinSentencia
 } = Fin
  = Fin
 Stack:
-5 50 250 2 
-a()Int)=0
-i()Int)=0
-j()Int)=0
-k()Int)=0
-l()Int)=0
-m()Int)=0
-n()Int)=0
+34 
+x()Int)=0
+y()Int)=0
+z()Int)=0

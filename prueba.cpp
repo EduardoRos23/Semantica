@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
  static void Main(string[] args)
 {
-   int a;
-   int i,j,k,l,m,n;
-   i = 5;
-   a=50;
-   a++;
-   a--;
-   a = 250;
-   a%=2;
+   int x,y,z;
+   x=1; y=33;
+   x++;
+   z=x+y;
+   Console.Write("Hola");
    }
