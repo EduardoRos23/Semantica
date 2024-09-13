@@ -32,6 +32,13 @@ string = Identificador
 args = Identificador
 ) = Caracter
 { = Inicio
+char = TipoDato
+m = Identificador
+; = FinSentencia
+m = Identificador
+= = Asignacion
+260 = Numero
+; = FinSentencia
 int = TipoDato
 x = Identificador
 , = Caracter
@@ -60,13 +67,14 @@ Console = Identificador
 . = Caracter
 Write = Identificador
 ( = Caracter
-"Hola" = Cadena
+"Hola, " = Cadena
 ) = Caracter
 ; = FinSentencia
 } = Fin
  = Fin
 Stack:
-34 
+260 34 
+m()Char)=0
 x()Int)=0
 y()Int)=0
 z()Int)=0

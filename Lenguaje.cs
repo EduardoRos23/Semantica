@@ -81,7 +81,7 @@ namespace Semantica
         {
             foreach(Variable v in listaVariables)
             {
-                log.WriteLine(v.getNombre()+"()"+v.getTipo()+")="+v.getValor() );
+                log.WriteLine(v.Nombre+"()"+v.Tipo+")="+v.Valor );
                 //Console.
             }
         }
@@ -152,6 +152,7 @@ namespace Semantica
         private void Asignacion()
         {
             string Variable = Contenido;
+            
             match(Tipos.Identificador);
             switch(Contenido){
                 
@@ -165,10 +166,35 @@ namespace Semantica
                 case "%=": match("%=");Expresion(); break;
             }
             match(";");
+            SizeVar(Variable);
             //log.WriteLine(Variable+"="+S.Pop());
         }
-        //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
-
+        private void SizeVar(string var){
+          if(TipoV(var)=="Char" && Valor(var)>255){
+           throw new Error(" Semantico: la variable "+var + " está fuera del rango del tipo Char", log);
+          }
+          if(TipoV(var)=="Int" && Valor(var)>65535){
+           throw new Error(" Semantico: la variable "+var + " está fuera del rango del tipo Int", log);
+          }
+        }
+          public float Valor(string var){
+            foreach(Variable n in listaVariables){
+             if(n.Nombre == var){
+                return n.Valor;
+             }
+             
+            }
+            return 0;
+          }
+          public string TipoV(string var){
+            foreach(Variable n in listaVariables){
+             if(n.Nombre == var){
+                return n.Tipo.ToString();
+             }
+             
+            }
+            return "";
+          }
         private void If()
         {
             match("if");
