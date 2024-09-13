@@ -17,7 +17,7 @@ namespace Semantica
          S = new Stack<float>();
         }
 
-        public Lenguaje(string nombre) : base(nombre)
+        public Lenguaje(string nombre="prueba.cpp")
         {
             listaVariables  = new List<Variable>();
             S = new Stack<float>();
@@ -72,7 +72,7 @@ namespace Semantica
             
             Variable.TipoDato tipo = getTipo(Contenido);
             match(Tipos.TipoDato);
-            listaIdentificadores(tipo);
+            ListaIdentificadores(tipo);
             match(";");
             
         }
@@ -82,17 +82,18 @@ namespace Semantica
             foreach(Variable v in listaVariables)
             {
                 log.WriteLine(v.getNombre()+"()"+v.getTipo()+")="+v.getValor() );
+                //Console.
             }
         }
         //ListaIdentificadores -> identificador (,ListaIdentificadores)?
-        private void listaIdentificadores(Variable.TipoDato t)
+        private void ListaIdentificadores(Variable.TipoDato t)
         {
             listaVariables.Add(new Variable(Contenido,t));
             match(Tipos.Identificador);
             if (Contenido == ",")
             {
                 match(",");
-                listaIdentificadores(t);
+                ListaIdentificadores(t);
             }
         }
         //BloqueInstrucciones -> { listaIntrucciones? }
@@ -153,8 +154,10 @@ namespace Semantica
             string Variable = Contenido;
             match(Tipos.Identificador);
             switch(Contenido){
+                
                 case "++":match(";"); break;
                 case "--":match(";"); break;
+                case "=": Expresion();break;
                 case "+=": Expresion(); break;
                 case "-=": Expresion(); break;
                 case "*=": Expresion(); break;
@@ -162,8 +165,7 @@ namespace Semantica
                 case "%=": Expresion(); break;
             }
             //match(";");
-            imprimeStack();
-            log.WriteLine(Variable+"="+S.Pop());
+            //log.WriteLine(Variable+"="+S.Pop());
         }
         //If -> if (Condicion) bloqueInstrucciones | instruccion (else bloqueInstrucciones | instruccion)?
 
@@ -313,6 +315,7 @@ namespace Semantica
             match("args");
             match(")");
             bloqueInstrucciones();
+            imprimeStack();
         }
         //Expresion -> Termino MasTermino
         private void Expresion()
@@ -403,40 +406,3 @@ namespace Semantica
 
 }
 
-
-
-/*
-Librerias -> using ListaLibrerias; Librerias?
-
-
-ListaIdentificadores -> identificador (,ListaIdentificadores)?
-BloqueInstrucciones -> { listaIntrucciones? }
-ListaInstrucciones -> Instruccion ListaInstrucciones?
-
-Instruccion -> Console | If | While | do | For | Asignacion
-Asignacion -> Identificador = Expresion;
-
-If -> if (Condicion) bloqueInstrucciones | instruccion
-     (else bloqueInstrucciones | instruccion)?
-
-Condicion -> Expresion operadorRelacional Expresion
-
-While -> while(Condicion) bloqueInstrucciones | instruccion
-Do -> do 
-        bloqueInstrucciones | intruccion 
-      while(Condicion);
-For -> for(Asignacion Condicion; Incremento) 
-       BloqueInstrucciones | Intruccion 
-Incremento -> Identificador ++ | --
-
-Console -> Console.(WriteLine|Write) (cadena); |
-           Console.(Read | ReadLine) ();
-
-Main      -> static void Main(string[] args) BloqueInstrucciones 
-
-Expresion -> Termino MasTermino
-MasTermino -> (OperadorTermino Termino)?
-Termino -> Factor PorFactor
-PorFactor -> (OperadorFactor Factor)?
-Factor -> numero | identificador | (Expresion)
-*/

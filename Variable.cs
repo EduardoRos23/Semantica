@@ -12,15 +12,25 @@ namespace Semantica
         {
             Char,Int,Float
         }
-        private string nombre;
+        private string nombre="";
         private TipoDato tipo;
         private float valor;
+
         public Variable(string nombre,TipoDato tipo)
         {
             this.nombre = nombre;
             this.tipo = tipo;
             this.valor = 0;
         }
+       /* public string Nombre{
+            get =>nombre;
+            set =>nombre=value;
+        }
+
+        public TipoDato Tipo{
+            get=>Tipo;
+        }*/
+        
         public void setValor(float valor)
         {
             this.valor = valor;

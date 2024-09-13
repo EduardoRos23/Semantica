@@ -15,57 +15,56 @@ namespace Sintaxis_1
         const int E = -2;
         int[,] TRAND =
         {
-            {0, 1, 2,26 ,1, 9,10, 8,18,12,27,12,14,15,19,17,17,21,22,24,25,26,26, 0,31},
-            {F, 1, 1, F, 1, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, 2, 3, 5, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {E, E, 4, E, 5, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, F},
-            {F, F, 4, F, 5, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {E, E, 7, E, E, 6, 6, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, F},
-            {E, E, 7, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, F},
-            {F, F, 7, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, 11, F, F, 11, F, F, F, F, F, F, F, F, F, F, F, F,F,F, F, F},
-            {F, F, F, F, F, F, 11, F, 11, F, F, F, F, F, F, F, F, F, F, F, F,F,F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, 13, F, F, F, F, F, F, F, F, F, F, F, F, F,F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, 16, F, F, F, F, F, F, F, F, F,F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, 16, F, F, F, F, F, F, F, F,F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, 20, F, F, F, F, F, F, F, F, F, F, F, F, F,F, F, F},
-            {F, F, F, F, F, F, F, F, 20, F, F, F, F, F, F, F, F, F, F, F, F, F,F, F, F},
-            {F, F, F, F, F, F, F, F, 20, F, F, F, F, F, F, F, F, F, F, F, F, F,F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,22,22,E,22, 22,F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {F, F, F, F, F, F, F, F,13,29,28, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
-            {28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,0,28, 0, F},
-            {29,29,29,29,29,29,29,29,29,30,29,29,29,29,29,29,29,29,29,29,29,E,29, 29,F},
-            {29,29,29,29,29,29,29,29,29,30, 0,29,29,29,29,29,29,29,29,29,29,E,29, 29,F},
-            {E, E, 32, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E,E},
-            {F,F, 32, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}
+              { 0, 1, 2,26, 1, 9,10, 8,18,12,27,12,14,15,19,17,17,21,22,24,25, F,26, 0,31},
+            { F, 1, 1, F, 1, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F ,F ,F ,F},
+            { F, F, 2, 3, 5, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F ,F ,F ,F},
+            { E, E, 4, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E ,E ,E ,E},
+            { F, F, 4, F, 5, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F ,F ,F ,F},
+            { E, E, 7, E, E, 6, 6, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E ,E ,E ,E},
+            { E, E, 7, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E ,E ,E ,E},
+            { F, F, 7, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F ,F ,F ,F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F ,F ,F ,F},
+            { F, F, F, F, F,11, F, F,11, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F,11, F,11, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F,13, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F,16, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F,16, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F,20, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F,20, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F,20, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            {22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,22,22, E,22,22,22},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            { F, F, F, F, F, F, F, F,13,29,28, F, F, F, F, F, F, F, F, F, F, F, F, F, F},
+            {28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28, 0,28, 0,28},
+            {29,29,29,29,29,29,29,29,29,30,29,29,29,29,29,29,29,29,29,29,29, E,29,29,29},
+            {29,29,29,29,29,29,29,29,29,30, 0,29,29,29,29,29,29,29,29,29,29, E,29,29,29},
+            { E, E,32, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E, E,26, E, E, E},
+            { F, F,32, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}
 
         };
 
-        public Lexico()
+       /* public Lexico(string nombre ="prueba.cpp")
         {
-            log = new StreamWriter("Pordefecto.log");
+            log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
             log.AutoFlush = true;
-            
             log.WriteLine("Analizador Lexico(por defecto)");
             log.WriteLine("Autor: ");
 
-            if (!File.Exists("PorDefecto.cpp"))
+            if (!File.Exists("prueba.cpp"))
             {
                 throw new Error("El archivo prueba.cpp no existe", log);
             }
-            archivo = new StreamReader("PorDefecto.cpp");
-        }
-       /* public Lexico() // Constructor
+            archivo = new StreamReader("prueba.cpp");
+        }*/
+        public Lexico() // Constructor
         {
             log = new StreamWriter("prueba.log");
             log.AutoFlush = true;
@@ -77,13 +76,13 @@ namespace Sintaxis_1
             {
                 throw new Error("El archivo prueba.cpp no existe", log);
             }
-            archivo = new StreamReader("Prueba.cpp");
-        }*/
-        public Lexico(string nombre) // Constructor
+            archivo = new StreamReader("prueba.cpp");
+        }
+        public Lexico(string nombre ="prueba.cpp") // Constructor
         {
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
             log.AutoFlush = true;
-            
+            linea =1;
             log.WriteLine("Analizador Lexico");
             log.WriteLine("Autor: Eduardo Rosales");
             
@@ -111,6 +110,7 @@ namespace Sintaxis_1
             }
             else if (c == '\n')
             {
+                linea++;
                 return 23;
             }
             else if (char.IsWhiteSpace(c))
