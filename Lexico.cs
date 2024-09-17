@@ -50,34 +50,6 @@ namespace Sintaxis_1
             { F, F,32, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F}
 
         };
-
-       /* public Lexico(string nombre ="prueba.cpp")
-        {
-            log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");
-            log.AutoFlush = true;
-            log.WriteLine("Analizador Lexico(por defecto)");
-            log.WriteLine("Autor: ");
-
-            if (!File.Exists("prueba.cpp"))
-            {
-                throw new Error("El archivo prueba.cpp no existe", log);
-            }
-            archivo = new StreamReader("prueba.cpp");
-        }*/
-        public Lexico() // Constructor
-        {
-            log = new StreamWriter("prueba.log");
-            log.AutoFlush = true;
-            
-            log.WriteLine("Analizador Lexico");
-            log.WriteLine("Autor: Eduardo Rosales");
-            
-            if (!File.Exists("prueba.cpp"))
-            {
-                throw new Error("El archivo prueba.cpp no existe", log);
-            }
-            archivo = new StreamReader("prueba.cpp");
-        }
         public Lexico(string nombre ="prueba.cpp") // Constructor
         {
             log = new StreamWriter(Path.GetFileNameWithoutExtension(nombre) + ".log");

@@ -158,7 +158,7 @@ namespace Semantica
                 
                 case "++":match("++"); break;
                 case "--":match("--"); break;
-                case "=": match("=");Expresion();break;
+                case "=": match("=");SizeVar(Variable);Expresion();break;
                 case "+=": match("+=");Expresion(); break;
                 case "-=": match("-=");Expresion(); break;
                 case "*=": match("*=");Expresion(); break;
@@ -166,7 +166,7 @@ namespace Semantica
                 case "%=": match("%=");Expresion(); break;
             }
             match(";");
-            SizeVar(Variable);
+            
             //log.WriteLine(Variable+"="+S.Pop());
         }
         private void SizeVar(string var){
