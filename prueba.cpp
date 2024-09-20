@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
  static void Main(string[] args)
 {
-   char a,a,b,c,d;
-float pi,e;
+  char a;
 a=(Int)((3+5)*8-(10-4)/2);
+a++;
+a+=32;
    }

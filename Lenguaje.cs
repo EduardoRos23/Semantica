@@ -4,7 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Sintaxis_1;
-
+/*
+1. Usar find en lugar de foreach
+2. Validar que no existan variables duplicadas
+3. Validar que existan variables en
+*/
 namespace Semantica
 {
     public class Lenguaje : Sintaxis
@@ -149,6 +153,11 @@ namespace Semantica
             }
         }
         //Asignacion -> Identificador = Expresion;
+        void getTipoValor(float valor){
+         var v = listaVariables.Find(delegate(Variable x){return x.Nombre==variable})
+         float valor = v.Valor;
+         Console.WriteLine(variable +" = "+v.Valor)
+        }
         private void Asignacion()
         {
             string Variable = Contenido;
@@ -160,7 +169,7 @@ namespace Semantica
                 }
                 else if(Contenido=="--"){
                   match("--");
-                   
+                resultado=0;
                 }
                 else if(Contenido=="="){
                   match("=");
@@ -205,6 +214,7 @@ namespace Semantica
         float rangoTipoDato(Variable.TipoDato T){
             switch(T){
                 case T.Int: return 255;
+                
 
             }
         return 0;
