@@ -152,24 +152,64 @@ namespace Semantica
         private void Asignacion()
         {
             string Variable = Contenido;
-            
+           float resultado = S.Pop();
             match(Tipos.Identificador);
-            switch(Contenido){
-                
-                case "++":match("++"); break;
-                case "--":match("--"); break;
-                case "=": match("=");SizeVar(Variable);Expresion();break;
-                case "+=": match("+=");Expresion(); break;
-                case "-=": match("-=");Expresion(); break;
-                case "*=": match("*=");Expresion(); break;
-                case "/=": match("/=");Expresion(); break;
-                case "%=": match("%=");Expresion(); break;
-            }
+                if(Contenido=="++"){
+                   match("++");
+                   resultado=0;
+                }
+                else if(Contenido=="--"){
+                  match("--");
+                   
+                }
+                else if(Contenido=="="){
+                  match("=");
+                  Expresion();
+                  resultado = S.Pop();
+                }
+                else if(Contenido=="+="){
+                  match("+=");
+                  Expresion();
+                  resultado = S.Pop();
+                }
+                else if(Contenido=="-="){
+                  match("-=");
+                  Expresion();
+                  resultado = S.Pop();
+
+                }
+                else if(Contenido=="*="){
+                  match("*=");
+                  Expresion();
+                  resultado = S.Pop();
+
+                }
+                else if(Contenido=="/="){
+                  match("/=");
+                  Expresion();
+                  resultado = S.Pop();
+                }
+                else if(Contenido=="%="){
+                   match("%=");
+                  Expresion();
+                  resultado = S.Pop();
+                }
+                if(resultado > rangoTipoDato(listaVariables.Find())){
+                    throw new Error("semantico",log);
+                }
             match(";");
             
             //log.WriteLine(Variable+"="+S.Pop());
         }
-        private void SizeVar(string var){
+
+        float rangoTipoDato(Variable.TipoDato T){
+            switch(T){
+                case T.Int: return 255;
+
+            }
+        return 0;
+        }
+        /*private void SizeVar(string var){
           if(TipoV(var)=="Char" && Valor(var)>255){
            throw new Error(" Semantico: la variable "+var + " está fuera del rango del tipo Char", log);
           }
@@ -194,7 +234,7 @@ namespace Semantica
              
             }
             return "";
-          }
+          }*/
         private void If()
         {
             match("if");

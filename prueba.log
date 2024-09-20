@@ -33,48 +33,25 @@ args = Identificador
 ) = Caracter
 { = Inicio
 char = TipoDato
-m = Identificador
-; = FinSentencia
-m = Identificador
-= = Asignacion
-100 = Numero
-; = FinSentencia
-int = TipoDato
-x = Identificador
+a = Identificador
 , = Caracter
-y = Identificador
+a = Identificador
 , = Caracter
-z = Identificador
+b = Identificador
+, = Caracter
+c = Identificador
+, = Caracter
+d = Identificador
 ; = FinSentencia
-x = Identificador
+float = TipoDato
+pi = Identificador
+, = Caracter
+e = Identificador
+; = FinSentencia
+a = Identificador
 = = Asignacion
-1 = Numero
-; = FinSentencia
-y = Identificador
-= = Asignacion
-33 = Numero
-; = FinSentencia
-x = Identificador
-++ = IncTermino
-; = FinSentencia
-z = Identificador
-= = Asignacion
-x = Identificador
-+ = OpTermino
-y = Identificador
-; = FinSentencia
-Console = Identificador
-. = Caracter
-Write = Identificador
 ( = Caracter
-"Adios, " = Cadena
+Int = Identificador
 ) = Caracter
-; = FinSentencia
-} = Fin
- = Fin
-Stack:
-100 34 
-m()Char)=0
-x()Int)=0
-y()Int)=0
-z()Int)=0
+( = Caracter
+Error: Sintaxis: se espera un (;) en la linea 10

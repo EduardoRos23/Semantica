@@ -14,7 +14,12 @@ namespace Sintaxis_1
             log.WriteLine("Error: " + mensaje);
         }
 
-       /* private void lineaError(string mensaje, StreamWriter log)
+        /* public Error(string mensaje, StreamWriter log, int linea) : base("Error: " + mensaje)
+        {
+            log.WriteLine("Error: " + mensaje+ "en la linea"+linea);
+        }
+
+        private void lineaError(string mensaje, StreamWriter log)
         {
             var stackTrace = new StackTrace(true);
             var frame = stackTrace.GetFrame(0);
