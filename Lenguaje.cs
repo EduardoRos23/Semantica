@@ -1,31 +1,38 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+
 using Sintaxis_1;
 /*
-1. Usar find en lugar de foreach
-2. Validar que no existan variables duplicadas
-3. Validar que existan variables en
+    1. Usar find en lugar del for each
+    2. Valiar que no existan varibles duplicadas
+    3. Validar que existan las variables en las expressions matematicas
+       Asignacion 
+    
 */
 namespace Semantica
 {
     public class Lenguaje : Sintaxis
     {
-       private  List<Variable> listaVariables;
-        private  Stack<float> S; 
+        private List <Variable> listaVariables;
+        private Stack<float> S;
         public Lenguaje()
         {
-         listaVariables  = new List<Variable>();
-         S = new Stack<float>();
-        }
-
-        public Lenguaje(string nombre="prueba.cpp")
-        {
-            listaVariables  = new List<Variable>();
+            log.WriteLine("Analizador Sintactico");
+            listaVariables = new List<Variable>();
             S = new Stack<float>();
         }
+        public Lenguaje(string nombre) : base(nombre)
+        {
+            log.WriteLine("Analizador Sintactico");
+            listaVariables = new List<Variable>();
+            S = new Stack<float>();
+        }
+        // Programa  -> Librerias? Main
         public void Programa()
         {
             if (Contenido == "using")
@@ -33,29 +40,27 @@ namespace Semantica
                 Librerias();
             }
             Main();
-            imprimeVariable();
+            imprimeVariables();
         }
-
-        //Programa  -> Librerias? Variables? Main
-
+        // Librerias -> using ListaLibrerias; Librerias?
         private void Librerias()
         {
             match("using");
-            ListaLibrerias();
+            listaLibrerias();
             match(";");
             if (Contenido == "using")
             {
                 Librerias();
             }
         }
-        //ListaLibrerias -> identificador (.ListaLibrerias)?
-        private void ListaLibrerias()
+        // ListaLibrerias -> identificador (.ListaLibrerias)?
+        private void listaLibrerias()
         {
             match(Tipos.Identificador);
             if (Contenido == ".")
             {
                 match(".");
-                ListaLibrerias();
+                listaLibrerias();
             }
         }
         Variable.TipoDato getTipo(string TipoDato)
@@ -64,67 +69,62 @@ namespace Semantica
             switch (TipoDato)
             {
                 case "int": tipo = Variable.TipoDato.Int; break;
-                case "Float": tipo = Variable.TipoDato.Float;break;
-                
+                case "float": tipo = Variable.TipoDato.Float; break;
             }
             return tipo;
         }
-
-        //Variables -> tipo_dato Lista_identificadores; Variables?
+        // Variables -> tipo_dato Lista_identificadores;
         private void Variables()
         {
-            
             Variable.TipoDato tipo = getTipo(Contenido);
             match(Tipos.TipoDato);
-            ListaIdentificadores(tipo);
+            listaIdentificadores(tipo);
             match(";");
-            
         }
-
-        private void imprimeVariable()
+        private void imprimeVariables()
         {
-            foreach(Variable v in listaVariables)
+            log.WriteLine("Lista de variables");
+            foreach (Variable v in listaVariables)
             {
-                log.WriteLine(v.Nombre+"()"+v.Tipo+")="+v.Valor );
-                //Console.
+                log.WriteLine(v.Nombre + " (" + v.Tipo + ") = " + v.Valor);
             }
         }
-        //ListaIdentificadores -> identificador (,ListaIdentificadores)?
-        private void ListaIdentificadores(Variable.TipoDato t)
+        // ListaIdentificadores -> identificador (,ListaIdentificadores)?
+        private void listaIdentificadores(Variable.TipoDato t)
         {
-            listaVariables.Add(new Variable(Contenido,t));
+            listaVariables.Add(new Variable(Contenido, t));
             match(Tipos.Identificador);
             if (Contenido == ",")
             {
                 match(",");
-                ListaIdentificadores(t);
+                listaIdentificadores(t);
             }
         }
-        //BloqueInstrucciones -> { listaIntrucciones? }
+        // BloqueInstrucciones -> { listaIntrucciones? }
         private void bloqueInstrucciones()
         {
             match("{");
             if (Contenido != "}")
             {
-                listaInstrucciones();
+                listaIntrucciones();
             }
             match("}");
         }
-        //ListaInstrucciones -> Instruccion ListaInstrucciones?
-        private void listaInstrucciones()
+        // ListaInstrucciones -> Instruccion ListaInstrucciones?
+        private void listaIntrucciones()
         {
             Instruccion();
             if (Contenido != "}")
             {
-                listaInstrucciones();
+                listaIntrucciones();
             }
         }
-        //Instruccion -> Console | If | While | do | For | Variables | Asignacion
+        // Instruccion -> Console | If | While | do | For | Variables | Asignacion
         private void Instruccion()
         {
             if (Contenido == "Console")
-            {  
-                Console1();
+            {
+                Console();
             }
             else if (Contenido == "if")
             {
@@ -141,9 +141,8 @@ namespace Semantica
             else if (Contenido == "for")
             {
                 For();
-
             }
-            else if (Clasificacion == Tipos.TipoDato)
+            if (Clasificacion == Tipos.TipoDato)
             {
                 Variables();
             }
@@ -152,106 +151,81 @@ namespace Semantica
                 Asignacion();
             }
         }
-        //Asignacion -> Identificador = Expresion;
-        void getTipoValor(float valor){
-         var v = listaVariables.Find(delegate(Variable x){return x.Nombre==variable})
-         float valor = v.Valor;
-         Console.WriteLine(variable +" = "+v.Valor)
-        }
+        // Asignacion -> Identificador = Expresion;
         private void Asignacion()
         {
-            string Variable = Contenido;
-           float resultado = S.Pop();
+            string variable = Contenido;
             match(Tipos.Identificador);
-                if(Contenido=="++"){
-                   match("++");
-                   resultado=0;
-                }
-                else if(Contenido=="--"){
-                  match("--");
-                resultado=0;
-                }
-                else if(Contenido=="="){
-                  match("=");
-                  Expresion();
-                  resultado = S.Pop();
-                }
-                else if(Contenido=="+="){
-                  match("+=");
-                  Expresion();
-                  resultado = S.Pop();
-                }
-                else if(Contenido=="-="){
-                  match("-=");
-                  Expresion();
-                  resultado = S.Pop();
 
-                }
-                else if(Contenido=="*="){
-                  match("*=");
-                  Expresion();
-                  resultado = S.Pop();
+            var v = listaVariables.Find(delegate(Variable x) { return x.Nombre == variable; });
+            float nuevoValor = v.Valor;
 
-                }
-                else if(Contenido=="/="){
-                  match("/=");
-                  Expresion();
-                  resultado = S.Pop();
-                }
-                else if(Contenido=="%="){
-                   match("%=");
-                  Expresion();
-                  resultado = S.Pop();
-                }
-                if(resultado > rangoTipoDato(listaVariables.Find())){
-                    throw new Error("semantico",log);
-                }
+            if (Contenido == "=")
+            {
+                match("=");
+                Expresion();
+                nuevoValor = S.Pop();
+            }
+            else if (Contenido == "++")
+            {
+                match("++");
+                nuevoValor++;
+            }
+            else if (Contenido == "--")
+            {
+                match("--");
+                nuevoValor--;
+            }
+            else if (Contenido == "+=")
+            {
+                match("+=");
+                Expresion();
+                nuevoValor += S.Pop();
+            }
+            else if (Contenido == "-=")
+            {
+                match("-=");
+                Expresion();
+                nuevoValor -= S.Pop();
+            }
+            else if (Contenido == "*=")
+            {
+                match("*=");
+                Expresion();
+                nuevoValor *= S.Pop();
+            }
+            else if (Contenido == "/=")
+            {
+                match("/=");
+                Expresion();
+                nuevoValor /= S.Pop();
+            }
+            else
+            {
+                match("%=");
+                Expresion();
+                nuevoValor %= S.Pop();
+            }
             match(";");
-            
-            //log.WriteLine(Variable+"="+S.Pop());
-        }
-
-        float rangoTipoDato(Variable.TipoDato T){
-            switch(T){
-                case T.Int: return 255;
-                
-
+            if (analisisSemantico(variable,nuevoValor))
+            {
+                v.Valor=nuevoValor;
             }
-        return 0;
+            log.WriteLine(variable + " = " + nuevoValor);
         }
-        /*private void SizeVar(string var){
-          if(TipoV(var)=="Char" && Valor(var)>255){
-           throw new Error(" Semantico: la variable "+var + " está fuera del rango del tipo Char", log);
-          }
-          if(TipoV(var)=="Int" && Valor(var)>65535){
-           throw new Error(" Semantico: la variable "+var + " está fuera del rango del tipo Int", log);
-          }
+        
+        bool analisisSemantico(string variable, float valor)
+        {
+            return true;
         }
-          public float Valor(string var){
-            foreach(Variable n in listaVariables){
-             if(n.Nombre == var){
-                return n.Valor;
-             }
-             
-            }
-            return 0;
-          }
-          public string TipoV(string var){
-            foreach(Variable n in listaVariables){
-             if(n.Nombre == var){
-                return n.Tipo.ToString();
-             }
-             
-            }
-            return "";
-          }*/
+        // If -> if (Condicion) bloqueInstrucciones | instruccion
+        // (else bloqueInstrucciones | instruccion)?
         private void If()
         {
             match("if");
             match("(");
             Condicion();
             match(")");
-            bloqueInstrucciones();
             if (Contenido == "{")
             {
                 bloqueInstrucciones();
@@ -260,7 +234,6 @@ namespace Semantica
             {
                 Instruccion();
             }
-
             if (Contenido == "else")
             {
                 match("else");
@@ -274,15 +247,15 @@ namespace Semantica
                 }
             }
         }
-        //Condicion -> Expresion operadorRelacional Expresion
+        // Condicion -> Expresion operadorRelacional Expresion
         private void Condicion()
         {
             Expresion();
             match(Tipos.OpRelacional);
             Expresion();
         }
-        //While -> while(Condicion) bloqueInstrucciones | instruccion
-        public void While()
+        // While -> while(Condicion) bloqueInstrucciones | instruccion
+        private void While()
         {
             match("while");
             match("(");
@@ -297,8 +270,10 @@ namespace Semantica
                 Instruccion();
             }
         }
-        //Do -> do bloqueInstrucciones | intruccion while(Condicion);
-        public void Do()
+        // Do -> do 
+        //          bloqueInstrucciones | intruccion 
+        //       while(Condicion);
+        private void Do()
         {
             match("do");
             if (Contenido == "{")
@@ -315,8 +290,9 @@ namespace Semantica
             match(")");
             match(";");
         }
-        //For -> for(Asignacion Condicion; Incremento) BloqueInstrucciones | Intruccion 
-        public void For()
+        // For -> for(Asignacion Condicion; Incremento) 
+        //          BloqueInstrucciones | Intruccion
+        private void For()
         {
             match("for");
             match("(");
@@ -334,8 +310,8 @@ namespace Semantica
                 Instruccion();
             }
         }
-        //Incremento -> Identificador ++ | --
-        public void Incremento()
+        // Incremento -> Identificador ++ | --
+        private void Incremento()
         {
             match(Tipos.Identificador);
             if (Contenido == "++")
@@ -347,8 +323,9 @@ namespace Semantica
                 match("--");
             }
         }
-        //Console -> Console.(WriteLine|Write) (cadena); | Console.(Read | ReadLine) ();
-        private void Console1()
+        // Console -> Console.(WriteLine|Write) (cadena?); |
+        //            Console.(Read | ReadLine) ();
+        private void Console()
         {
             match("Console");
             match(".");
@@ -361,7 +338,6 @@ namespace Semantica
                     match(Tipos.Cadena);
                 }
                 match(")");
-
             }
             else
             {
@@ -378,7 +354,7 @@ namespace Semantica
             }
             match(";");
         }
-        //Main      -> static void Main(string[] args) BloqueInstrucciones 
+        // Main      -> static void Main(string[] args) BloqueInstrucciones 
         private void Main()
         {
             match("static");
@@ -391,15 +367,14 @@ namespace Semantica
             match("args");
             match(")");
             bloqueInstrucciones();
-            imprimeStack();
         }
-        //Expresion -> Termino MasTermino
+        // Expresion -> Termino MasTermino
         private void Expresion()
         {
             Termino();
             MasTermino();
         }
-        //MasTermino -> (OperadorTermino Termino)?
+        // MasTermino -> (OperadorTermino Termino)?
         private void MasTermino()
         {
             if (Clasificacion == Tipos.OpTermino)
@@ -409,23 +384,22 @@ namespace Semantica
                 Termino();
                 float R1 = S.Pop();
                 float R2 = S.Pop();
-                switch(operador)
+                switch (operador)
                 {
-                    case "+":S.Push(R1+R2); break;
-                    case "-":S.Push(R1-R2); break;
+                    case "+": S.Push(R2+R1); break;
+                    case "-": S.Push(R2-R1); break;
                 }
             }
         }
-        //Termino -> Factor PorFactor
+        // Termino -> Factor PorFactor
         private void Termino()
         {
-            Factor();
+            Factor(); 
             PorFactor();
         }
-        //PorFactor -> (OperadorFactor Factor)?
+        // PorFactor -> (OperadorFactor Factor)?
         private void PorFactor()
         {
-            
             if (Clasificacion == Tipos.OpFactor)
             {
                 string operador = Contenido;
@@ -433,32 +407,30 @@ namespace Semantica
                 Factor();
                 float R1 = S.Pop();
                 float R2 = S.Pop();
-                switch(operador)
+                switch (operador)
                 {
-                    case "*":S.Push(R1*R2); break;
-                    case "/":S.Push(R1/R2); break;
-                    case "%":S.Push(R1%R2); break;
+                    case "*": S.Push(R2*R1); break;
+                    case "/": S.Push(R2/R1); break;
+                    case "%": S.Push(R2%R1); break;
                 }
             }
         }
-        //Factor -> numero | identificador | (Expresion)
+        // Factor -> numero | identificador | (Expresion)
         private void imprimeStack()
         {
             log.WriteLine("Stack:");
-            foreach(float e in S.Reverse())
+            foreach (float e in S.Reverse())
             {
-                log.Write(e+" ");
+                log.Write(e + " ");
             }
             log.WriteLine();
         }
         private void Factor()
         {
-            
             if (Clasificacion == Tipos.Numero)
             {
                 S.Push(float.Parse(Contenido));
                 match(Tipos.Numero);
-
             }
             else if (Clasificacion == Tipos.Identificador)
             {
@@ -467,18 +439,15 @@ namespace Semantica
             else
             {
                 match("(");
-                if(Clasificacion == Tipos.TipoDato)
+                if (Clasificacion == Tipos.TipoDato)
                 {
                     match(Tipos.TipoDato);
-                    match("(");
                     match(")");
+                    match("(");
                 }
                 Expresion();
                 match(")");
             }
         }
     }
-
-
 }
-
