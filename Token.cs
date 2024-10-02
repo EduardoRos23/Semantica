@@ -22,32 +22,13 @@ namespace Sintaxis_1
             contenido = "";
         }
         
-        public string Contenido{
-         get => contenido;
-         set => contenido = value;
-        
+   
+       public string Contenido{
+        get;
+        set;
         }
-
         public Tipos Clasificacion{
-            get=> clasificacion;
-            set => clasificacion=value;
+        get;
+        set;
         }
-      /*  public void setContenido(string contenido)
-        {
-            this.contenido = contenido;
-        }
-        public void setClasificacion(Tipos clasificacion)
-        {
-            this.clasificacion = clasificacion;
-        }
-        public string getContenido()
-        {
-            return this.contenido;
-        }
-        public Tipos getClasificacion()
-        {
-            return this.clasificacion;
-        }*/
-        
-    }
-}
+}}
