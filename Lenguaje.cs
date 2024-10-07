@@ -167,9 +167,14 @@ namespace Semantica
             string variable = Contenido;
             match(Tipos.Identificador);
 
-            var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == variable; });
-            if(v == null){
-                throw new Exception("Variable no encontrada");
+             Variable v = null;
+            foreach (var variableItem in listaVariables)
+            {
+                if (variableItem.Nombre == variable)
+                {
+                    v = variableItem;
+                    break;
+                }
             }
             float nuevoValor = v.Valor;
     
@@ -548,14 +553,22 @@ namespace Semantica
             }
             else if (Clasificacion == Tipos.Identificador)
             {
-                var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == Contenido; });
-               if(v==null){
-                throw new Exception("Variable no existe");
-               }
-                S.Push(v.Valor);
-                if (tipoDatoExpresion < v.Tipo)
+                Variable v = null;
+                foreach (var variableItem in listaVariables)
                 {
-                    tipoDatoExpresion = v.Tipo;
+                    if (variableItem.Nombre == Contenido)
+                    {
+                        v = variableItem;
+                        break;
+                    }
+                }
+                if (v != null)
+                {
+                    S.Push(v.Valor);
+                    if (tipoDatoExpresion < v.Tipo)
+                    {
+                        tipoDatoExpresion = v.Tipo;
+                    }
                 }
                 match(Tipos.Identificador);
             }
