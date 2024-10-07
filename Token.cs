@@ -20,6 +20,7 @@ namespace Sintaxis_1
         public Token()
         {
             contenido = "";
+            Contenido = "";
         }
         
    

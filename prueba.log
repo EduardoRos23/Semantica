@@ -1,2 +1,7 @@
 Analizador Lexico
 Analizador Sintactico
+x = 2
+a = 100
+Lista de variables
+x (Char) = 2
+a (Char) = 100

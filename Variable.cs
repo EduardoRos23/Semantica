@@ -16,7 +16,7 @@ namespace Semantica
         private TipoDato tipo;
         private float valor;
 
-        public Variable(string nombre,TipoDato tipo)
+        public Variable(string nombre, TipoDato tipo)
         {
             this.nombre = nombre;
             this.tipo = tipo;
@@ -30,7 +30,7 @@ namespace Semantica
         }
 
         public string Nombre{
-            get;
+            get => nombre;
         }
         public TipoDato Tipo{
             get;

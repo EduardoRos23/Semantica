@@ -167,7 +167,15 @@ namespace Semantica
             string variable = Contenido;
             match(Tipos.Identificador);
 
-            var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == variable; });
+             Variable v = null;
+            foreach (var variableItem in listaVariables)
+            {
+                if (variableItem.Nombre == variable)
+                {
+                    v = variableItem;
+                    break;
+                }
+            }
             float nuevoValor = v.Valor;
 
             tipoDatoExpresion = Variable.TipoDato.Char;
@@ -545,11 +553,22 @@ namespace Semantica
             }
             else if (Clasificacion == Tipos.Identificador)
             {
-                var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == Contenido; });
-                S.Push(v.Valor);
-                if (tipoDatoExpresion < v.Tipo)
+                Variable v = null;
+                foreach (var variableItem in listaVariables)
                 {
-                    tipoDatoExpresion = v.Tipo;
+                    if (variableItem.Nombre == Contenido)
+                    {
+                        v = variableItem;
+                        break;
+                    }
+                }
+                if (v != null)
+                {
+                    S.Push(v.Valor);
+                    if (tipoDatoExpresion < v.Tipo)
+                    {
+                        tipoDatoExpresion = v.Tipo;
+                    }
                 }
                 match(Tipos.Identificador);
             }
