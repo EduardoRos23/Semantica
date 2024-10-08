@@ -9,7 +9,7 @@ using System.Net.Http.Headers;
 
 using Sintaxis_1;
 /*
-    1. Usar find en lugar del for each -Listo
+    1. Usar find en lugar del for each
     2. Valiar que no existan varibles duplicadas
     3. Validar que existan las variables en las expressions matematicas
        Asignacion
@@ -167,17 +167,9 @@ namespace Semantica
             string variable = Contenido;
             match(Tipos.Identificador);
 
-             Variable v = null;
-            foreach (var variableItem in listaVariables)
-            {
-                if (variableItem.Nombre == variable)
-                {
-                    v = variableItem;
-                    break;
-                }
-            }
+            var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == variable; });
             float nuevoValor = v.Valor;
-    
+
             tipoDatoExpresion = Variable.TipoDato.Char;
 
             if (Contenido == "=")
@@ -553,22 +545,11 @@ namespace Semantica
             }
             else if (Clasificacion == Tipos.Identificador)
             {
-                Variable v = null;
-                foreach (var variableItem in listaVariables)
+                var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == Contenido; });
+                S.Push(v.Valor);
+                if (tipoDatoExpresion < v.Tipo)
                 {
-                    if (variableItem.Nombre == Contenido)
-                    {
-                        v = variableItem;
-                        break;
-                    }
-                }
-                if (v != null)
-                {
-                    S.Push(v.Valor);
-                    if (tipoDatoExpresion < v.Tipo)
-                    {
-                        tipoDatoExpresion = v.Tipo;
-                    }
+                    tipoDatoExpresion = v.Tipo;
                 }
                 match(Tipos.Identificador);
             }
