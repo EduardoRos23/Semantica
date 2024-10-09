@@ -9,13 +9,13 @@ using System.Net.Http.Headers;
 
 using Sintaxis_1;
 /*
-    1. Usar find en lugar del for each
+    1. Usar find en lugar del for each -Listo
     2. Valiar que no existan varibles duplicadas
     3. Validar que existan las variables en las expressions matematicas
        Asignacion
     4. Asinar una expresion matematica a la variable al momento de declararla
        verificando la semantica
-    5. Validar que en el ReadLine se capturen solo numeros (Excepcion)
+    5. Validar que en el ReadLine se capturen solo numeros (Excepcion) -Ya casi
     6. listaConcatenacion: 30, 40, 50, 12, 0
     7. Quitar comillas y considerar el Write
     8. Emular el for -- 15 puntos
@@ -191,7 +191,10 @@ namespace Semantica
                     else
                     {
                         match("ReadLine");
-                        nuevoValor = float.Parse("" + Console.ReadLine());
+                        string entrada=("" + Console.ReadLine());
+                         if(!float.TryParse(entrada,out nuevoValor)){
+                          throw new Exception("El valor introducido debe ser un número");
+                         }
                         // 8
                     }
                     match("(");
