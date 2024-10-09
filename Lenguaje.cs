@@ -9,17 +9,17 @@ using System.Net.Http.Headers;
 
 using Sintaxis_1;
 /*
-    1. Usar find en lugar del for each -Listo
-    2. Valiar que no existan varibles duplicadas
+    1. Usar find en lugar del for each                                  -Listo
+    2. Valiar que no existan varibles duplicadas                        
     3. Validar que existan las variables en las expressions matematicas
        Asignacion
     4. Asinar una expresion matematica a la variable al momento de declararla
        verificando la semantica
-    5. Validar que en el ReadLine se capturen solo numeros (Excepcion) -Ya casi
-    6. listaConcatenacion: 30, 40, 50, 12, 0
+    5. Validar que en el ReadLine se capturen solo numeros (Excepcion)   -Listo
+    6. listaConcatenacion: 30, 40, 50, 12, 0                   
     7. Quitar comillas y considerar el Write
-    8. Emular el for -- 15 puntos
-    9. Emular el while -- 15 puntos
+    8. Emular el for -- 15 puntos                                      -Creo que ya
+    9. Emular el while -- 15 puntos                                    -Listo
 */
 
 namespace Semantica
@@ -93,8 +93,9 @@ namespace Semantica
         private void imprimeVariables()
         {
             log.WriteLine("Lista de variables");
-            foreach (Variable v in listaVariables)
-            {
+
+            for(int i =0;i<listaVariables.Count();i++){
+                var v = listaVariables.Find(v=>v.Nombre == listaVariables[i].Nombre);
                 log.WriteLine(v.Nombre + " (" + v.Tipo + ") = " + v.Valor);
             }
         }
@@ -355,10 +356,14 @@ namespace Semantica
         // While -> while(Condicion) bloqueInstrucciones | instruccion
         private void While(bool ejecutar)
         {
+            int cTemp = caracter-6;
+            int lTemp = linea;
+            bool resultado= false;
             match("while");
             match("(");
-            Condicion();
+            resultado = Condicion() && ejecutar;
             match(")");
+            while(resultado){
             if (Contenido == "{")
             {
                 bloqueInstrucciones(ejecutar);
@@ -367,6 +372,16 @@ namespace Semantica
             {
                 Instruccion(ejecutar);
             }
+             resultado = Condicion() && ejecutar;
+            if (resultado) {
+            caracter = cTemp;
+            linea = lTemp;
+            archivo.DiscardBufferedData();
+            archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
+            nextToken();
+             }
+            }
+
         }
         // Do -> do 
         //          bloqueInstrucciones | intruccion 
@@ -406,15 +421,31 @@ namespace Semantica
         //          BloqueInstrucciones | Intruccion
         private void For(bool ejecutar)
         {
+            int cTemp = caracter-3;
+            int lTemp = linea;
+            bool resultado = false;
+
             match("for");
             match("(");
+            var varF1 = listaVariables.Find(v => v.Nombre == Contenido);
+            if(varF1 == null){
+                throw new Exception("La variable dentro del for no ha sido declarada");
+            }
             Asignacion(ejecutar);
             match(";");
-            Condicion();
+            resultado = Condicion() && ejecutar;
             match(";");
+            var varF2 = listaVariables.Find(v => v.Nombre == Contenido);
+            if(varF2 == null){
+                throw new Exception("La variable dentro del for no ha sido declarada");
+            }
+            if(varF2.Nombre != varF1.Nombre){
+                throw new Exception("No puede haber más de una variable dentro del For");
+            }
             Asignacion(ejecutar);
             match(")");
-            if (Contenido == "{")
+            while(resultado){
+              if (Contenido == "{")
             {
                 bloqueInstrucciones(ejecutar);
             }
@@ -422,6 +453,16 @@ namespace Semantica
             {
                 Instruccion(ejecutar);
             }
+            resultado = Condicion() && ejecutar;
+            if (resultado) {
+            caracter = cTemp;
+            linea = lTemp;
+            archivo.DiscardBufferedData();
+            archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
+            nextToken();
+             }
+            }
+            
         }
         // Console -> Console.(WriteLine|Write) (cadena?);
         private void console(bool ejecutar)
@@ -525,16 +566,16 @@ namespace Semantica
                 }
             }
         }
-        // Factor -> numero | identificador | (Expresion)
-        private void imprimeStack()
+       /* private void imprimeStack()
         {
             log.WriteLine("Stack:");
+
             foreach (float e in S.Reverse())
             {
                 log.Write(e + " ");
             }
             log.WriteLine();
-        }
+        }*/
         private void Factor()
         {
             if (Clasificacion == Tipos.Numero)
