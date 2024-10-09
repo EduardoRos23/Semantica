@@ -11,7 +11,7 @@ using Sintaxis_1;
 /*
     1. Usar find en lugar del for each                                  -Listo
     2. Valiar que no existan varibles duplicadas                        
-    3. Validar que existan las variables en las expressions matematicas
+    3. Validar que existan las variables en las expressions matematicas -Listo
        Asignacion
     4. Asinar una expresion matematica a la variable al momento de declararla
        verificando la semantica
@@ -166,8 +166,10 @@ namespace Semantica
         private void Asignacion(bool ejecutar)
         {
             string variable = Contenido;
+            if(!listaVariables.Exists(v => v.Nombre == variable)){
+             throw new Error("Semantico: la variable "+variable+" no ha sido declarada en la línea ",log,linea);
+            }
             match(Tipos.Identificador);
-
             var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == variable; });
             float nuevoValor = v.Valor;
 
