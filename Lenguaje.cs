@@ -10,10 +10,10 @@ using System.Net.Http.Headers;
 using Sintaxis_1;
 /*
     1. Usar find en lugar del for each                                  -Listo
-    2. Valiar que no existan varibles duplicadas                        
+    2. Valiar que no existan varibles duplicadas                        -Listo
     3. Validar que existan las variables en las expressions matematicas -Listo
        Asignacion
-    4. Asinar una expresion matematica a la variable al momento de declararla
+    4. Asinar una expresion matematica a la variable al momento de declararla -Listo
        verificando la semantica
     5. Validar que en el ReadLine se capturen solo numeros (Excepcion)   -Listo
     6. listaConcatenacion: 30, 40, 50, 12, 0                   
@@ -102,8 +102,30 @@ namespace Semantica
         // ListaIdentificadores -> identificador (,ListaIdentificadores)?
         private void listaIdentificadores(Variable.TipoDato t)
         {
+            //Requerimiento 2
+            if(listaVariables.Exists(v=> v.Nombre == Contenido)){
+              throw new Error("Semantico: "+ Contenido +" la variable ya ha sido declarada, linea:",log,linea);
+            }
             listaVariables.Add(new Variable(Contenido, t));
-            match(Tipos.Identificador);
+            var variable = listaVariables.Find(delegate (Variable x) { return x.Nombre == Contenido; });        
+            if(variable == null){
+                throw new Error("La variable "+ Contenido + " no ha sido declarada; linea: ",log,linea);
+            }    
+            match(Tipos.Identificador);         
+            if(Contenido == "="){
+                match("=");
+                Expresion();
+                float x = S.Pop();
+              if(analisisSemantico(variable,x)){
+                variable.Valor = x;
+                S.Push(x);
+                log.WriteLine(variable.Nombre + " = " + x);
+              }
+              else{
+                throw new Error("Semántico: No se puede asignar un "+tipoDatoExpresion+ "a un" +variable.Tipo + "; linea: " ,log,linea);
+              }
+
+            }
             if (Contenido == ",")
             {
                 match(",");
