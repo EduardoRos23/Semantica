@@ -28,3 +28,18 @@ C:\Users\Americo\Documents\Repositorios\Semantica\obj\Debug\net8.0\refint\Semant
 C:\Users\Americo\Documents\Repositorios\Semantica\obj\Debug\net8.0\Semantica.pdb
 C:\Users\Americo\Documents\Repositorios\Semantica\obj\Debug\net8.0\Semantica.genruntimeconfig.cache
 C:\Users\Americo\Documents\Repositorios\Semantica\obj\Debug\net8.0\ref\Semantica.dll
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\bin\Debug\net8.0\Semantica.exe
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\bin\Debug\net8.0\Semantica.deps.json
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\bin\Debug\net8.0\Semantica.runtimeconfig.json
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\bin\Debug\net8.0\Semantica.dll
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\bin\Debug\net8.0\Semantica.pdb
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.AssemblyInfoInputs.cache
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.AssemblyInfo.cs
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.csproj.CoreCompileInputs.cache
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.sourcelink.json
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.dll
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\refint\Semantica.dll
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.pdb
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\Semantica.genruntimeconfig.cache
+C:\Users\kazel\OneDrive\Documentos\TEC\5to semestre\Automatas II\Semantica\obj\Debug\net8.0\ref\Semantica.dll

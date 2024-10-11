@@ -466,7 +466,9 @@ namespace Semantica
 
             match("for");
             match("(");
-            var varF1 = listaVariables.Find(v => v.Nombre == Contenido);
+
+            string VariableControl = Contenido;
+            var varF1 = listaVariables.Find(v => v.Nombre == VariableControl);
             if (varF1 == null)
             {
                 throw new Exception("La variable dentro del for no ha sido declarada");
@@ -475,30 +477,35 @@ namespace Semantica
             match(";");
             resultado = Condicion() && ejecutar;
             match(";");
-            var varF2 = listaVariables.Find(v => v.Nombre == Contenido);
+            string VariableActualizacion = Contenido;
+            var varF2 = listaVariables.Find(v => v.Nombre == VariableActualizacion);
             if (varF2 == null)
             {
                 throw new Exception("La variable dentro del for no ha sido declarada");
             }
-            /*if(varF2.Nombre != varF1.Nombre){
+            if(varF2.Nombre != varF1.Nombre){
                 throw new Exception("No puede haber más de una variable dentro del For");
-            }*/
+            }
             Asignacion(ejecutar);
             match(")");
             match("{");
+            
             while (resultado)
             {
                 if (Contenido == "{")
                 {
                     bloqueInstrucciones(ejecutar);
+                    writel= true;
                 }
                 else
                 {
                     Instruccion(ejecutar);
                 }
+                Asignacion(ejecutar);
                 resultado = Condicion() && ejecutar;
                 if (resultado)
                 {
+
                     caracter = cTemp;
                     linea = lTemp;
                     archivo.DiscardBufferedData();
