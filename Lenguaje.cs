@@ -17,9 +17,9 @@ using Sintaxis_1;
        verificando la semantica
     5. Validar que en el ReadLine se capturen solo numeros (Excepcion)   -Listo
     6. listaConcatenacion: 30, 40, 50, 12, 0                            -Aun no listo 
-    7. Quitar comillas y considerar el Write                           -Aun no listo 
-    8. Emular el for -- 15 puntos                                      -Creo que ya
-    9. Emular el while -- 15 puntos                                    -Listo
+    7. Quitar comillas y considerar el Write                           -Listo 
+    8. Emular el for -- 15 puntos                                      -No listo
+    9. Emular el while -- 15 puntos                                    -No listo
 */
 
 namespace Semantica
@@ -502,29 +502,42 @@ namespace Semantica
             if (Contenido == "WriteLine")
             {
                 match("WriteLine");
-            }
-            else
-            {
-                match("Write");
-            }
-            match("(");
+                match("(");
             if (Clasificacion == Tipos.Cadena)
             {
                 if (ejecutar)
                 {
                     string texto=Contenido;
-                    texto = texto.Replace("\"","");
-                    Console.WriteLine(texto);
-                    Console.WriteLine(Contenido.Replace('"',' ').TrimEnd().TrimEnd());
+                    texto = texto.Replace("\"","");                  
+                    Console.WriteLine(Contenido.Replace('"',' ').TrimEnd());
 
                 }
-                // Considerar el Write
-                // Quitar las comillas
                 match(Tipos.Cadena);
                 if (Contenido == "+")
                 {
                     listaConcatenacion();
                 }
+            }}
+            else
+            {
+                match("Write");
+                match("(");
+            if (Clasificacion == Tipos.Cadena)
+            {
+                if (ejecutar)
+                {
+                    string texto=Contenido;
+                    //texto = texto.Replace("\"","");
+                    Console.Write(Contenido.Replace('"',' ').TrimEnd());
+
+                }
+                match(Tipos.Cadena);
+                if (Contenido == "+")
+                {
+                    listaConcatenacion();
+                }
+            }
+            
             }
             match(")");
             match(";");
@@ -537,8 +550,8 @@ namespace Semantica
             {
                 listaConcatenacion();
             }
-            return "";
-        }
+            return "";}
+        
         // Main      -> static void Main(string[] args) BloqueInstrucciones 
         private void Main()
         {

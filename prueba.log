@@ -2,4 +2,12 @@ Analizador Lexico
 Analizador Sintactico
 y = 10
 z = 2
-Error: Semantico, no puedo asignar un Int a un Char; linea: 11
+altura = 2
+k = 1
+i = 0
+i = 1
+i = 2
+i = 3
+i = 0
+i = 1
+Error: Sintaxis: se espera un (() en la linea 52

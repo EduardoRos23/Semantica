@@ -8,7 +8,11 @@ static void Main(string[] args)
     int altura,i,j;
     float y=10, z=2;
     char c;
-    c =  (100+200);
+    Console.WriteLine("Hola");
+    Console.Write("Adios");
+    Console.Write("Valor de altura = ");
+    altura = Console.ReadLine();
+   int k=1;
     
     /* = (100+200);
     c = (char) (100+200);
@@ -20,12 +24,8 @@ static void Main(string[] args)
     x+=(altura*8);
     x*=2;
     // x/=(y-6);
-    */
-   Console.Write("Valor de altura = ");
-    altura = Console.ReadLine();
-   int k=1;
-
-    /*for (i = 1; k<=altura; k++) // mandar false y pedir de retorno el valor de la asignacion
+    
+    for (i = 1; k<=altura; k++) // mandar false y pedir de retorno el valor de la asignacion
     {
         for (j = 1; j<=k; j++)
         {
