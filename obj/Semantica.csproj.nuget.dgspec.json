@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kazel\\OneDrive\\Documentos\\TEC\\5to semestre\\Automatas II\\Semantica\\Semantica.csproj": {}
+    "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\Semantica.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kazel\\OneDrive\\Documentos\\TEC\\5to semestre\\Automatas II\\Semantica\\Semantica.csproj": {
+    "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\Semantica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kazel\\OneDrive\\Documentos\\TEC\\5to semestre\\Automatas II\\Semantica\\Semantica.csproj",
+        "projectUniqueName": "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\Semantica.csproj",
         "projectName": "Semantica",
-        "projectPath": "C:\\Users\\kazel\\OneDrive\\Documentos\\TEC\\5to semestre\\Automatas II\\Semantica\\Semantica.csproj",
-        "packagesPath": "C:\\Users\\kazel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kazel\\OneDrive\\Documentos\\TEC\\5to semestre\\Automatas II\\Semantica\\obj\\",
+        "projectPath": "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\Semantica.csproj",
+        "packagesPath": "C:\\Users\\Americo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Americo\\Documents\\Repositorios\\Semantica\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kazel\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Americo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
