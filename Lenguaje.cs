@@ -570,11 +570,12 @@ namespace Semantica
                 switch (operador)
                 {
                     case "+": 
+                    S.Push(R2 + R1);
                     tipoDatoExpresion =valorToTipo(R2 + R1);
-                    S.Push(R2 + R1); break;
+                    break;
                     case "-":
-                     S.Push(R2 - R1);
-                     tipoDatoExpresion = valorToTipo(R2 - R1);
+                    S.Push(R2 - R1);
+                    tipoDatoExpresion = valorToTipo(R2 - R1);
                     break;
                 }
             }
