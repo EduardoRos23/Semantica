@@ -18,8 +18,8 @@ using Sintaxis_1;
     5. Validar que en el ReadLine se capturen solo numeros (Excepcion)   -Listo
     6. listaConcatenacion: 30, 40, 50, 12, 0                   
     7. Quitar comillas y considerar el Write
-    8. Emular el for -- 15 puntos                                      -Creo que ya
-    9. Emular el while -- 15 puntos                                    -Listo
+    8. Emular el for -- 15 puntos                                      -No
+    9. Emular el while -- 15 puntos                                    -No
 */
 
 namespace Semantica
@@ -104,13 +104,13 @@ namespace Semantica
         {
             //Requerimiento 2
             if(listaVariables.Exists(v=> v.Nombre == Contenido)){
-              throw new Error("Semantico: "+ Contenido +" la variable ya ha sido declarada, linea:",log,linea);
+            throw new Error("Semantico: la variable \""+ Contenido +"\" ya ha sido declarada; linea: "+linea,log);
             }
             listaVariables.Add(new Variable(Contenido, t));
             var variable = listaVariables.Find(delegate (Variable x) { return x.Nombre == Contenido; });        
-            if(variable == null){
-                throw new Error("La variable "+ Contenido + " no ha sido declarada; linea: ",log,linea);
-            }    
+            /*if(variable == null){
+                throw new Error("La variable \""+ Contenido + "\" no ha sido declarada; linea:"+linea,log);
+            }   */
             match(Tipos.Identificador);         
             if(Contenido == "="){
                 match("=");
@@ -122,7 +122,7 @@ namespace Semantica
                 log.WriteLine(variable.Nombre + " = " + x);
               }
               else{
-                throw new Error("Semántico: No se puede asignar un "+tipoDatoExpresion+ "a un" +variable.Tipo + "; linea: " ,log,linea);
+                throw new Error("Semántico: No se puede asignar un "+tipoDatoExpresion+ "a un" +variable.Tipo + "; linea: " ,log);
               }
 
             }
@@ -189,7 +189,7 @@ namespace Semantica
         {
             string variable = Contenido;
             if(!listaVariables.Exists(v => v.Nombre == variable)){
-             throw new Error("Semantico: la variable "+variable+" no ha sido declarada en la línea ",log,linea);
+             throw new Error("Semantico: la variable \""+variable+"\" no ha sido declarada; línea: "+linea,log);
             }
             match(Tipos.Identificador);
             var v = listaVariables.Find(delegate (Variable x) { return x.Nombre == variable; });
@@ -207,6 +207,7 @@ namespace Semantica
                     if (Contenido == "Read")
                     {
                         match("Read");
+                        match("(");
                         if (ejecutar)
                         {
                             float valor = Console.Read();
@@ -216,14 +217,16 @@ namespace Semantica
                     else
                     {
                         match("ReadLine");
+                        match("(");
                         string entrada=("" + Console.ReadLine());
                          if(!float.TryParse(entrada,out nuevoValor)){
                           throw new Exception("El valor introducido debe ser un número");
                          }
                         // 8
                     }
-                    match("(");
+                    
                     match(")");
+                    //match(";");
                 }
                 else
                 {
@@ -281,7 +284,7 @@ namespace Semantica
             {
                 // tipoDatoExpresion = 
                 throw new Error("Semantico, no puedo asignar un " + tipoDatoExpresion +
-                                " a un " + v.Tipo, log, linea);
+                                " a un " + v.Tipo + "; linea: "+linea, log);
             }
             log.WriteLine(variable + " = " + nuevoValor);
         }
@@ -380,9 +383,10 @@ namespace Semantica
         // While -> while(Condicion) bloqueInstrucciones | instruccion
         private void While(bool ejecutar)
         {
-            int cTemp = caracter-6;
+            int cTemp = caracter-3;
             int lTemp = linea;
             bool resultado= false;
+            
             match("while");
             match("(");
             resultado = Condicion() && ejecutar;
@@ -404,7 +408,7 @@ namespace Semantica
             archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
             nextToken();
              }
-            }
+             }//
 
         }
         // Do -> do 
@@ -463,11 +467,12 @@ namespace Semantica
             if(varF2 == null){
                 throw new Exception("La variable dentro del for no ha sido declarada");
             }
-            if(varF2.Nombre != varF1.Nombre){
+            /*if(varF2.Nombre != varF1.Nombre){
                 throw new Exception("No puede haber más de una variable dentro del For");
-            }
+            }*/
             Asignacion(ejecutar);
             match(")");
+            match("{");
             while(resultado){
               if (Contenido == "{")
             {
@@ -485,6 +490,7 @@ namespace Semantica
             archivo.BaseStream.Seek(cTemp, SeekOrigin.Begin);
             nextToken();
              }
+    
             }
             
         }
@@ -506,7 +512,9 @@ namespace Semantica
             {
                 if (ejecutar)
                 {
-                    Console.WriteLine(Contenido);
+                    string texto=Contenido;
+                    texto = texto.Replace("\"","");
+                    Console.WriteLine(texto);
                 }
                 // Considerar el Write
                 // Quitar las comillas
@@ -561,8 +569,13 @@ namespace Semantica
                 float R2 = S.Pop();
                 switch (operador)
                 {
-                    case "+": S.Push(R2 + R1); break;
-                    case "-": S.Push(R2 - R1); break;
+                    case "+": 
+                    tipoDatoExpresion =valorToTipo(R2 + R1);
+                    S.Push(R2 + R1); break;
+                    case "-":
+                     S.Push(R2 - R1);
+                     tipoDatoExpresion = valorToTipo(R2 - R1);
+                    break;
                 }
             }
         }

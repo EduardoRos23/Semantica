@@ -16,7 +16,7 @@ namespace Sintaxis_1
 
          public Error(string mensaje, StreamWriter log, int linea) : base("Error: " + mensaje)
         {
-            log.WriteLine("Error: " + mensaje+ "en la linea"+linea);
+            log.WriteLine("Error: " + mensaje+ "en la linea: "+linea);
         }
 
     

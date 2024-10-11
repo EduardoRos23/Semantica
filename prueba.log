@@ -2,4 +2,4 @@ Analizador Lexico
 Analizador Sintactico
 y = 10
 z = 2
-c = 44
+Error: Semantico, no puedo asignar un Int a un Char; linea: 11

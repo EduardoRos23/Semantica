@@ -8,38 +8,47 @@ static void Main(string[] args)
     int altura,i,j;
     float y=10, z=2;
     char c;
-
-    // c = (100+200);
+    c =  (100+200);
+    
+    /* = (100+200);
     c = (char) (100+200);
 
-    Console.Write("Valor de altura = ");
-    altura = Console.ReadLine();
+    
 
     float x = (3 + altura) * 8 - (10 - 4) / 2; // = 61
     x--;
     x+=(altura*8);
     x*=2;
     // x/=(y-6);
-    int k=1;
-    for (i = 1; k<=altura; k++) // mandar false y pedir de retorno el valor de la asignacion
+    */
+   Console.Write("Valor de altura = ");
+    altura = Console.ReadLine();
+   int k=1;
+
+    /*for (i = 1; k<=altura; k++) // mandar false y pedir de retorno el valor de la asignacion
     {
         for (j = 1; j<=k; j++)
         {
+            i++;
             if (j%2==0)
                 {Console.Write("*");}
             else
                 {Console.Write("-");}
         }
         Console.WriteLine("");
-    }
+    }*/
     i = 0;
     do
     {
-        Console.Write("-");
+        Console.Write("a");
+        i++;
+    }while (i<3);
+    Console.WriteLine("");
+    i=0;
+    while(i<3){
+        Console.WriteLine("hola");
         i++;
     }
-    while (i<altura*2);
-    Console.WriteLine("");
     for (i = 1; i<=altura; i++)
     {
         j = 1;
