@@ -8,17 +8,15 @@ static void Main(string[] args)
     int altura,i,j;
     float y=10, z=2;
     char c;
-    Console.WriteLine("Hola");
-    Console.Write("Adios");
-    Console.Write("Valor de altura = ");
+    Console.Write("Tengo "+ y + " años");
+     
+    /*Console.Write(" Adios");
+    Console.WriteLine(" Valor de altura = ");
     altura = Console.ReadLine();
-   int k=1;
+    int k=1;
     
-    /* = (100+200);
+     = (100+200);
     c = (char) (100+200);
-
-    
-
     float x = (3 + altura) * 8 - (10 - 4) / 2; // = 61
     x--;
     x+=(altura*8);
@@ -36,19 +34,14 @@ static void Main(string[] args)
                 {Console.Write("-");}
         }
         Console.WriteLine("");
-    }*/
-    i = 0;
+    }
+
     do
     {
         Console.Write("a");
         i++;
     }while (i<3);
     Console.WriteLine("");
-    i=0;
-    while(i<3){
-        Console.WriteLine("hola");
-        i++;
-    }
     for (i = 1; i<=altura; i++)
     {
         j = 1;
@@ -67,4 +60,5 @@ static void Main(string[] args)
     }
     while (i<altura*2);
     Console.WriteLine("");
+    */
 }
