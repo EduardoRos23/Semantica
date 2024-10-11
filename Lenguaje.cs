@@ -16,8 +16,8 @@ using Sintaxis_1;
     4. Asinar una expresion matematica a la variable al momento de declararla -Listo
        verificando la semantica
     5. Validar que en el ReadLine se capturen solo numeros (Excepcion)   -Listo
-    6. listaConcatenacion: 30, 40, 50, 12, 0                            -Aun no listo
-    7. Quitar comillas y considerar el Write                           -Aun no listo
+    6. listaConcatenacion: 30, 40, 50, 12, 0                            -Aun no listo 
+    7. Quitar comillas y considerar el Write                           -Aun no listo 
     8. Emular el for -- 15 puntos                                      -Creo que ya
     9. Emular el while -- 15 puntos                                    -Listo
 */
@@ -506,7 +506,11 @@ namespace Semantica
             {
                 if (ejecutar)
                 {
-                    Console.WriteLine(Contenido);
+                    string texto=Contenido;
+                    texto = texto.Replace("\"","");
+                    Console.WriteLine(texto);
+                    Console.WriteLine(Contenido.Replace('"',' ').TrimEnd().TrimEnd());
+
                 }
                 // Considerar el Write
                 // Quitar las comillas
